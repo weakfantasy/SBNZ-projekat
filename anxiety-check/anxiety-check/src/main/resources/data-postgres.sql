@@ -1,0 +1,1 @@
+insert into users (type, email, password, verified) values ('admin', 'admin@gmail.com','$2a$10$RVzuprKddsjdq6P8QWmqF.sCj2uYPIUlbFVB.b7tJ9RdFNOOBNoXO' ,true);
