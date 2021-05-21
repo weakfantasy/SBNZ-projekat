@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,6 +18,9 @@ public class Diagnosis {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(unique = false, nullable = false)
+	private String name;
 	
 	@Column(unique = false, nullable = false)
 	private LocalDate datum;
@@ -32,6 +37,10 @@ public class Diagnosis {
 	@OneToOne(fetch = FetchType.EAGER)
 	private AnxietyDisorder disorder;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private TestTakingUser testTakingUser;
+	
 	public Diagnosis() {
 		super();
 	}
@@ -43,6 +52,18 @@ public class Diagnosis {
 		this.stressLevel = stress;
 		this.anxiety = anxiety;
 		this.therapy = therapy;
+	}
+
+	public Diagnosis(Long id, String name, LocalDate datum, int stressLevel, boolean anxiety, Therapy therapy,
+			AnxietyDisorder disorder) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.datum = datum;
+		this.stressLevel = stressLevel;
+		this.anxiety = anxiety;
+		this.therapy = therapy;
+		this.disorder = disorder;
 	}
 
 	public LocalDate getDatum() {
@@ -75,6 +96,31 @@ public class Diagnosis {
 	public void setTherapy(Therapy therapy) {
 		this.therapy = therapy;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getStressLevel() {
+		return stressLevel;
+	}
+
+	public void setStressLevel(int stressLevel) {
+		this.stressLevel = stressLevel;
+	}
+	
 	
 	
 

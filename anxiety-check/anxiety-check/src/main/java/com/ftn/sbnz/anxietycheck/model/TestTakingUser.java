@@ -2,24 +2,28 @@ package com.ftn.sbnz.anxietycheck.model;
 
 import java.util.Set;
 
-import javax.management.relation.Role;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.ftn.sbnz.anxietycheck.dto.TestTakerDTO;
+
 @Entity
 public class TestTakingUser extends User {
+	
+
+	
+	@Column(nullable=true, unique=false)
+	private int stressPoints;
+	
+	@Column(nullable=true, unique=false)
+	private StressCategory stress;
 	
 	@ElementCollection(targetClass = RiskFactors.class)
     @CollectionTable(name = "risk_user", joinColumns = @JoinColumn(name = "id"))
@@ -36,8 +40,8 @@ public class TestTakingUser extends User {
     @Enumerated(EnumType.STRING)
 	private Set<CommonAnxietySymptoms> commonSympotms; 
 	
-	@Column(unique = false, nullable = false)
-	@OneToMany(fetch = FetchType.EAGER)
+	@Column(unique = false, nullable = true)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "testTakingUser")
 	private Set<Diagnosis> history;
 	
 	
@@ -45,17 +49,37 @@ public class TestTakingUser extends User {
 		super();
 	}
 	
+	public TestTakingUser(TestTakerDTO ttDto) {
+		this.riskFactors = ttDto.getRiskFactors();
+		this.commonSympotms = ttDto.getCommonSympotms();
+		this.predominantSymptoms = ttDto.getPredominantSymptoms();
+		this.stressPoints = ttDto.getStressPoints();
+		this.history = null;
+		this.stress = null;
+	}
+	
 
 	public TestTakingUser(Long id, Set<RiskFactors> riskFactors, Set<PredominantSymptoms> predominantSymptoms,
-			Set<CommonAnxietySymptoms> commonSympotms, Set<Diagnosis> history) {
+			Set<CommonAnxietySymptoms> commonSympotms, Set<Diagnosis> history, int stressPoint) {
 		super();
 		this.id = id;
 		this.riskFactors = riskFactors;
 		this.predominantSymptoms = predominantSymptoms;
 		this.commonSympotms = commonSympotms;
 		this.history = history;
+		this.stressPoints = stressPoint;
 	}
 
+	
+
+	public int getStressPoints() {
+		return stressPoints;
+	}
+
+
+	public void setStressPoints(int stressPoints) {
+		this.stressPoints = stressPoints;
+	}
 
 
 	public Long getId() {
@@ -96,6 +120,14 @@ public class TestTakingUser extends User {
 
 	public void setHistory(Set<Diagnosis> history) {
 		this.history = history;
+	}
+
+	public StressCategory getStress() {
+		return stress;
+	}
+
+	public void setStress(StressCategory stress) {
+		this.stress = stress;
 	} 
 	
 	
