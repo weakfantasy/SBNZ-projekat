@@ -12,23 +12,6 @@ import com.ftn.sbnz.anxietycheck.model.Diagnosis;
 @Service
 public class DiagnosisService {
 
-	private static final Logger log = LoggerFactory.getLogger(Diagnosis.class);
-
-	@Autowired
-	private KieContainer kieContainer;
-
-	@Autowired
-	public DiagnosisService(KieContainer kieContainer) {
-		log.info("Initialising a new example session.");
-		this.kieContainer = kieContainer;
-	}
 	
-	public void getStressLevel(Integer stressPoints) {
-		KieSession kieSession = kieContainer.newKieSession("test-session");
-		kieSession.insert(stressPoints);
-		kieSession.fireAllRules();
-		kieSession.dispose();
-		
-	}
 
 }
