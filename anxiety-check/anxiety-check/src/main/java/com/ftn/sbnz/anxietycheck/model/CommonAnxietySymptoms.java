@@ -4,5 +4,11 @@ public enum CommonAnxietySymptoms {
 	
 	DurationGreaterThan1months,
 	FrequencyAlmostEveryDay,
+	IssuesWithSleep,
+	RapidBreathing,
+	ElevatedHeartRate,
+	DifficultyConcentrating,
+	Irritability,
+	ImpenfingDoom,
 	
 }

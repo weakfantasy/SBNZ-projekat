@@ -1,0 +1,21 @@
+package com.main
+
+import com.ftn.sbnz.anxietycheck.model.TestTakingUser;
+import com.ftn.sbnz.anxietycheck.model.StressCategory.*;
+import com.ftn.sbnz.anxietycheck.model.AnxietyDisorder;
+import com.ftn.sbnz.anxietycheck.model.Depression;
+import com.ftn.sbnz.anxietycheck.model.DepressionSymptoms;
+
+
+import java.time.LocalDate;
+
+rule "Depression" 
+	salience -10*$symptoms.size()
+    when
+        $t: TestTakingUser( $symptoms : depressionSymptoms, $symptoms.size() >= 2 , $disorder : anxietyDisorder, $disorder != null , depression == null)
+        $d: Depression($name : name)
+        Boolean(booleanValue == true) from  $name.contains($disorder.getName())
+    then
+    	System.out.println("Depression: " + $name);
+    	modify($t) { setDepression($d) }
+end

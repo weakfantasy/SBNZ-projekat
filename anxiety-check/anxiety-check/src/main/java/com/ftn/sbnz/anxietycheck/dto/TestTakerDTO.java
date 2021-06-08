@@ -1,15 +1,16 @@
 package com.ftn.sbnz.anxietycheck.dto;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import com.ftn.sbnz.anxietycheck.model.CommonAnxietySymptoms;
+import com.ftn.sbnz.anxietycheck.model.DepressionSymptoms;
 import com.ftn.sbnz.anxietycheck.model.PredominantSymptoms;
 import com.ftn.sbnz.anxietycheck.model.RiskFactors;
 import com.ftn.sbnz.anxietycheck.model.StressCategory;
 
 public class TestTakerDTO {
 	
-	private StressCategory stressLevel;
 	
 	private int stressPoints;
 	
@@ -19,7 +20,21 @@ public class TestTakerDTO {
 
 	private Set<CommonAnxietySymptoms> commonSympotms;
 	
+	private Set<DepressionSymptoms> depressionSymptoms;
 	
+	private LocalDate start;
+	
+
+	public TestTakerDTO(int stressPoints, Set<RiskFactors> riskFactors, Set<PredominantSymptoms> predominantSymptoms,
+			Set<CommonAnxietySymptoms> commonSympotms, LocalDate start, Set<DepressionSymptoms> depressionSymptoms) {
+		super();
+		this.stressPoints = stressPoints;
+		this.riskFactors = riskFactors;
+		this.predominantSymptoms = predominantSymptoms;
+		this.commonSympotms = commonSympotms;
+		this.start = start;
+		this.depressionSymptoms = depressionSymptoms;
+	}
 
 	public TestTakerDTO() {
 		super();
@@ -33,7 +48,7 @@ public class TestTakerDTO {
 		this.riskFactors = riskFactors;
 		this.predominantSymptoms = predominantSymptoms;
 		this.commonSympotms = commonSympotms;
-		this.stressLevel = stressLevel;
+
 	}
 
 	public int getStressPoints() {
@@ -68,13 +83,23 @@ public class TestTakerDTO {
 		this.commonSympotms = commonSympotms;
 	}
 
-	public StressCategory getStressLevel() {
-		return stressLevel;
+	public LocalDate getStart() {
+		return start;
 	}
 
-	public void setStressLevel(StressCategory stressLevel) {
-		this.stressLevel = stressLevel;
-	} 
+	public void setStart(LocalDate start) {
+		this.start = start;
+	}
+
+	public Set<DepressionSymptoms> getDepressionSymptoms() {
+		return depressionSymptoms;
+	}
+
+	public void setDepressionSymptoms(Set<DepressionSymptoms> depressionSymptoms) {
+		this.depressionSymptoms = depressionSymptoms;
+	}
+
+
 	
 	
 

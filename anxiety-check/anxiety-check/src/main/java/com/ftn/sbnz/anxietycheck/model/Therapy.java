@@ -2,6 +2,8 @@ package com.ftn.sbnz.anxietycheck.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +19,8 @@ public class Therapy {
 	private String name;
 	
 	@Column(unique = false, nullable = false)
-	private TherapyType type;
+	@Enumerated(EnumType.STRING)
+	private TherapyType therapyType;
 	
 	@Column(unique = true, nullable = false)
 	private String description;
@@ -31,7 +34,7 @@ public class Therapy {
 	public Therapy(String name, TherapyType type, String description) {
 		super();
 		this.name = name;
-		this.type = type;
+		this.therapyType = type;
 		this.description = description;
 	}
 
@@ -42,10 +45,10 @@ public class Therapy {
 		this.name = name;
 	}
 	public TherapyType getType() {
-		return type;
+		return therapyType;
 	}
 	public void setType(TherapyType type) {
-		this.type = type;
+		this.therapyType = type;
 	}
 	public String getDescription() {
 		return description;

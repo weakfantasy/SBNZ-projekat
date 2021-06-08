@@ -1,0 +1,21 @@
+/*package com.main
+
+import com.ftn.sbnz.anxietycheck.model.TestTakingUser;
+import com.ftn.sbnz.anxietycheck.model.StressCategory.*;
+import com.ftn.sbnz.anxietycheck.model.AnxietyDisorder;
+import com.ftn.sbnz.anxietycheck.model.Diagnosis;
+import com.ftn.sbnz.anxietycheck.model.DepressionSymptoms;
+
+
+import java.time.LocalDate;
+
+rule "Diagnosis" 
+	salience -60
+    when
+        $t: TestTakingUser( $disorder : anxietyDisorder, $disorder != null, diagnosis == null)
+        $d: Diagnosis($diagnosedDisorder : anxietyDisorder)
+        Boolean(booleanValue == true) from $disorder == $diagnosedDisorder
+    then
+    	System.out.println("Diagnosis : " + $d.getTherapy.getName());
+    	modify($t) { setDiagnosis($d) }
+end*/

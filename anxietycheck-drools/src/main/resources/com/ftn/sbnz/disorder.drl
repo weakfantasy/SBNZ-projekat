@@ -1,0 +1,28 @@
+package com.main
+
+import com.ftn.sbnz.anxietycheck.model.TestTakingUser;
+import com.ftn.sbnz.anxietycheck.model.StressCategory.*;
+import com.ftn.sbnz.anxietycheck.model.AnxietyDisorder;
+import com.ftn.sbnz.anxietycheck.model.PredominantSymptoms;
+
+
+import java.time.LocalDate;
+
+rule "Disorder" 
+	salience ((100*$value) / $symptoms.size())
+    when
+        $d: AnxietyDisorder($name: name, $symptoms: predominantSymptoms)
+        $t: TestTakingUser(anxiety == true, anxietyDisorder == null, $symp: predominantSymptoms)
+        Number($value: intValue >= 3) from accumulate(
+        	PredominantSymptoms($this:this, this memberOf $symptoms) from $symp,
+        	count($this)
+        )
+        not (
+        	AnxietyDisorder(name == "GAD") from $d and 
+            TestTakingUser( $startOfSymptoms : start,  $startOfSymptoms.isAfter(LocalDate.now().minusMonths(6))) from $t            	
+        )
+    then
+    	System.out.println("Disorder: " + $name);
+    	System.out.println("Num of symptoms: " + $value + "/" + $symptoms.size());
+    	modify($t) { setAnxietyDisorder($d) }
+end

@@ -1,5 +1,7 @@
 package com.ftn.sbnz.anxietycheck.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.sbnz.anxietycheck.dto.TestTakerDTO;
+import com.ftn.sbnz.anxietycheck.model.CommonAnxietySymptoms;
 import com.ftn.sbnz.anxietycheck.model.TestTakingUser;
 import com.ftn.sbnz.anxietycheck.service.UserService;
 
@@ -22,7 +25,11 @@ public class TestTakerController {
 	
 	@RequestMapping(value = "/stressLevel", method = RequestMethod.GET)
     public ResponseEntity<?> getStressLevel(@RequestBody TestTakerDTO testTakerDto) {
-		
+		System.out.println(testTakerDto.getStart().isBefore(LocalDate.now().minusDays(29)) + " Datum");
+		System.out.println(testTakerDto.getCommonSympotms().size());
+		for(CommonAnxietySymptoms t : testTakerDto.getCommonSympotms()) {
+			System.out.println("(Kontroler) Simptomi: " + t.toString());
+		}
 		TestTakingUser user = new TestTakingUser(testTakerDto);
 		
 		userService.getStressLevel(user);

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,17 +21,21 @@ public class Diagnosis {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique = false, nullable = false)
+	@Column(unique = false)
 	private String name;
 	
-	@Column(unique = false, nullable = false)
+	@Column(unique = false)
 	private LocalDate datum;
 	
-	@Column(unique = false, nullable = false)
-	private int stressLevel;
+	@Column(unique = false)
+	@Enumerated(EnumType.STRING)
+	private StressCategory stressLevel;
 	
-	@Column(unique = false, nullable = false)
+	@Column(unique = false)
 	private boolean anxiety;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	private Depression depression;
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	private Therapy therapy;
@@ -37,25 +43,26 @@ public class Diagnosis {
 	@OneToOne(fetch = FetchType.EAGER)
 	private AnxietyDisorder disorder;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id")
+	@OneToOne(fetch = FetchType.EAGER)
 	private TestTakingUser testTakingUser;
 	
 	public Diagnosis() {
 		super();
 	}
 	
-	public Diagnosis(LocalDate datum, AnxietyDisorder disorder, int stress, boolean anxiety, Therapy therapy) {
+	public Diagnosis(LocalDate datum, AnxietyDisorder disorder, StressCategory stress, boolean anxiety, Therapy therapy, Depression depression) {
 		super();
 		this.datum = datum;
 		this.disorder = disorder;
 		this.stressLevel = stress;
 		this.anxiety = anxiety;
 		this.therapy = therapy;
+		this.depression = depression;
+		
 	}
 
-	public Diagnosis(Long id, String name, LocalDate datum, int stressLevel, boolean anxiety, Therapy therapy,
-			AnxietyDisorder disorder) {
+	public Diagnosis(Long id, String name, LocalDate datum, StressCategory stressLevel, boolean anxiety, Therapy therapy,
+			AnxietyDisorder disorder, Depression depression) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -64,6 +71,7 @@ public class Diagnosis {
 		this.anxiety = anxiety;
 		this.therapy = therapy;
 		this.disorder = disorder;
+		this.depression = depression;
 	}
 
 	public LocalDate getDatum() {
@@ -78,10 +86,10 @@ public class Diagnosis {
 	public void setDisorder(AnxietyDisorder disorder) {
 		this.disorder = disorder;
 	}
-	public int getStress() {
+	public StressCategory getStress() {
 		return stressLevel;
 	}
-	public void setStress(int stress) {
+	public void setStress(StressCategory stress) {
 		this.stressLevel = stress;
 	}
 	public boolean isAnxiety() {
@@ -113,14 +121,29 @@ public class Diagnosis {
 		this.name = name;
 	}
 
-	public int getStressLevel() {
+	public StressCategory getStressLevel() {
 		return stressLevel;
 	}
 
-	public void setStressLevel(int stressLevel) {
+	public void setStressLevel(StressCategory stressLevel) {
 		this.stressLevel = stressLevel;
 	}
-	
+
+	public Depression getDepression() {
+		return depression;
+	}
+
+	public void setDepression(Depression depression) {
+		this.depression = depression;
+	}
+
+	public TestTakingUser getTestTakingUser() {
+		return testTakingUser;
+	}
+
+	public void setTestTakingUser(TestTakingUser testTakingUser) {
+		this.testTakingUser = testTakingUser;
+	}
 	
 	
 
