@@ -23,6 +23,13 @@ public class TestTakerController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> testFunction() {
+		System.out.println("Tuj sam");
+		TestTakingUser user = new TestTakingUser();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+	
 	@RequestMapping(value = "/stressLevel", method = RequestMethod.GET)
     public ResponseEntity<?> getStressLevel(@RequestBody TestTakerDTO testTakerDto) {
 		System.out.println(testTakerDto.getStart().isBefore(LocalDate.now().minusDays(29)) + " Datum");
