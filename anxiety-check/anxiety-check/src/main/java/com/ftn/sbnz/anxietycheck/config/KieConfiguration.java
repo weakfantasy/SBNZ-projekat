@@ -24,13 +24,13 @@ public class KieConfiguration {
         return kieContainer;
     }
 
-    @Bean
-    public KieSession kieSession(KieContainer kieContainer) {
-        KieSession kieSession = kieContainer.newKieSession("test-session");
-
-        System.out.println("kieSession new");
-        return kieSession;
-    }
+//    @Bean
+//    public KieSession kieSession(KieContainer kieContainer) {
+//        KieSession kieSession = kieContainer.newKieSession("test-session");
+//
+//        System.out.println("kieSession new");
+//        return kieSession;
+//    }
 
 }
 

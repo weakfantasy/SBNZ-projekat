@@ -14,13 +14,51 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthModule } from './pages/auth/auth.module';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { HttpClientModule } from '@angular/common/http';
+import { TestPageComponent } from './pages/test-page/test-page.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { TrendModule } from 'ngx-trend';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TestPageComponent
   ],
   imports: [
+    CommonModule,
+    MatTableModule,
+    NgxEchartsModule,
+    TrendModule,
+    MatCardModule,
+    MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatInputModule,
+    NgApexchartsModule,
+    FormsModule,
+    SharedModule,
+    NgxEchartsModule,
+    MatCardModule,
+    MatButtonModule,
+    SharedModule,
     BrowserModule,
     SharedModule,
     AuthModule,
@@ -32,6 +70,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     HttpClientModule,
     MatButtonModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })

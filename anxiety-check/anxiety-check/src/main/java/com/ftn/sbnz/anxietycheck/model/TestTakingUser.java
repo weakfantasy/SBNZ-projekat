@@ -66,6 +66,8 @@ public class TestTakingUser extends User {
 	@Column(unique = false)
 	private LocalDate start;
 	
+	@Column(unique = false)
+	private LocalDate startOfTherapy;
 	
 	public TestTakingUser() {
 		super();
@@ -230,7 +232,17 @@ public class TestTakingUser extends User {
 
 	public void setAnxietyDisorder(AnxietyDisorder anxietyDisorder) {
 		this.anxietyDisorder = anxietyDisorder;
+	}
+
+	public LocalDate getStartOfTherapy() {
+		return startOfTherapy;
+	}
+
+	public void setStartOfTherapy(LocalDate startOfTherapy) {
+		this.startOfTherapy = startOfTherapy;
 	} 
+	
+	
 	
 
 }

@@ -15,14 +15,10 @@ public class Therapy {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique = true, nullable = false)
+	@Column(unique = false, nullable = false)
 	private String name;
 	
-	@Column(unique = false, nullable = false)
-	@Enumerated(EnumType.STRING)
-	private TherapyType therapyType;
-	
-	@Column(unique = true, nullable = false)
+	@Column(unique = false, nullable = false, length=1075)
 	private String description;
 	
 	
@@ -31,10 +27,9 @@ public class Therapy {
 		super();
 	}
 	
-	public Therapy(String name, TherapyType type, String description) {
+	public Therapy(String name, String description) {
 		super();
 		this.name = name;
-		this.therapyType = type;
 		this.description = description;
 	}
 
@@ -44,12 +39,7 @@ public class Therapy {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public TherapyType getType() {
-		return therapyType;
-	}
-	public void setType(TherapyType type) {
-		this.therapyType = type;
-	}
+	
 	public String getDescription() {
 		return description;
 	}

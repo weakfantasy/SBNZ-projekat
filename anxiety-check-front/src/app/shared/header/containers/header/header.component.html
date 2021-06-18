@@ -5,16 +5,10 @@
       <mat-icon *ngIf="!isMenuOpened" class="header__title-button-icon">menu</mat-icon>
       <mat-icon *ngIf="isMenuOpened" class="header__title-button-icon">arrow_back</mat-icon>
     </button>
-    <h6 class="header__title-text">Angular Material Admin</h6>
+    <h6 class="header__title-text">Anxiety Check</h6>
   </div>
 
   <div class="header-toolbar">
-    <a
-      mat-flat-button
-      class="unlock-button"
-      href="https://flatlogic.com/templates/angular-material-admin-full/demo"
-      target="_blank"
-    >Unlock Full Version</a>
     <app-search></app-search>
     <app-notifications></app-notifications>
     <app-email [emails]="emails$ | async"></app-email>

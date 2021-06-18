@@ -1,0 +1,220 @@
+<app-layout>
+  <mat-toolbar class="page-header" role="heading">
+    <h1>Dashboard</h1>
+
+  </mat-toolbar>
+
+  <div fxFlex></div>
+  <div *ngIf="showStress" fxLayout="column" fxFlex="70%" style="width: 50%; margin: 0 auto;"
+    class="typography-content__headings">
+    <form class="reactiveForm " [formGroup]="stressForm" (ngSubmit)="test()">
+      <mat-label>
+        <h6 class="title-center ">In the LAST FEW WEEKS, how often have you:</h6>
+      </mat-label>
+      <mat-label class=" fw-medium">Been upset because of something that happened
+        unexpectedly?
+      </mat-label>
+      <mat-radio-group class="example-radio-group " formControlName="sympt1">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of stressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Felt that you were unable to control important things in your life?
+      </mat-label>
+      <mat-radio-group formControlName="sympt2" class="example-radio-group">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of stressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Felt nervous and 'stressed'?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="sympt3">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of stressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Felt confident about your ability to handle your personal problems?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="sympt4">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of revStressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Felt that things were going your way?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="sympt5">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of revStressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Found that you could NOT cope with all the things you had to do?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="sympt6">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of stressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Been able to control irritations in your life?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="sympt7">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of revStressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Felt that you were on top of things?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="sympt8">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of revStressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Been angered because of things that happened that were out of your
+        control?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="sympt9">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of stressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Felt difficulties were piling up so high that you could not overcome
+        them?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="sympt10">
+        <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of stressAns"
+          [value]="answer.value">
+          {{answer.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <button mat-flat-button color="warn" [disabled]="stressForm.invalid">Next</button>
+    </form>
+  </div>
+
+  <div *ngIf="showAnxiety" fxLayout="column" fxFlex="70%" style="width: 50%; margin: 0 auto;"
+    class="typography-content__headings">
+    <form class="reactiveForm " [formGroup]="commonAnxietyForm" (ngSubmit)="collectAnxietySympt()">
+      <mat-label>
+        <h6 class="title-center ">In the LAST FEW WEEKS: </h6>
+      </mat-label>
+      <mat-label class=" fw-medium">Have you experienced rapid heart rate?
+      </mat-label>
+      <mat-radio-group class="example-radio-group " formControlName="asympt1">
+        <mat-radio-button color="warn" class="example-radio-button" value="4">
+          Yes
+        </mat-radio-button>
+        <mat-radio-button color="warn" class="example-radio-button" value="no">
+          No
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium"> Have you experienced rapid and uncontrollable breathing?
+      </mat-label>
+      <mat-radio-group formControlName="asympt2" class="example-radio-group">
+
+        <mat-radio-button color="warn" class="example-radio-button" value="3">
+          Yes
+        </mat-radio-button>
+        <mat-radio-button color="warn" class="example-radio-button" value="no">
+          No
+        </mat-radio-button>
+
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Have you experienced issues with sleep?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="asympt3">
+        <mat-radio-button color="warn" class="example-radio-button" value="2">
+          Yes
+        </mat-radio-button>
+        <mat-radio-button color="warn" class="example-radio-button" value="no">
+          No
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Have you felt difficulties with concentrating on what you are doing?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="asympt4">
+        <mat-radio-button color="warn" class="example-radio-button" value="3">
+          Yes
+        </mat-radio-button>
+        <mat-radio-button color="warn" class="example-radio-button" value="no">
+          No
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Have you felt irritable with your surroundings? Especially with things you usually
+        don't mind.
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="asympt7">
+        <mat-radio-button color="warn" class="example-radio-button" value="6">
+          Yes
+        </mat-radio-button>
+        <mat-radio-button color="warn" class="example-radio-button" value="no">
+          No
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Have you been bothered with feelings of impending doom? As if something
+        life-threatening or tragic is about to occur.
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="asympt8">
+        <mat-radio-button color="warn" class="example-radio-button" value="3">
+          Yes
+        </mat-radio-button>
+        <mat-radio-button color="warn" class="example-radio-button" value="no">
+          No
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">How frequently do these symptoms occur?
+      </mat-label>
+      <mat-radio-group class="example-radio-group" formControlName="asympt10">
+        <mat-radio-button color="warn" class="example-radio-button" value="no">
+          Not at all
+        </mat-radio-button>
+        <mat-radio-button color="warn" class="example-radio-button" value="no">
+          Every few days
+        </mat-radio-button>
+        <mat-radio-button color="warn" class="example-radio-button" value="1">
+          More than half od the days
+        </mat-radio-button>
+        <mat-radio-button color="warn" class="example-radio-button" value="1">
+          Nearly every day
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-label class=" fw-medium">Roughly choose a date when these symptoms have started.
+      </mat-label>
+      <mat-form-field>
+        <mat-label>
+          Start of symptoms
+        </mat-label>
+        <input matInput [matDatepicker]="picker" [max]="today" formControlName="asympt5">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <button mat-flat-button color="warn" [disabled]="commonAnxietyForm.invalid">Next</button>
+    </form>
+  </div>
+
+  <app-footer></app-footer>
+</app-layout>

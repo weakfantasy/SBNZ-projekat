@@ -4,9 +4,10 @@ import com.ftn.sbnz.anxietycheck.model.TestTakingUser;
 import com.ftn.sbnz.anxietycheck.model.StressCategory;
 
 rule "None stress level"
-	salience 100 
+		agenda-group "stressLevel"
+		salience 400 
     when
-        $t: TestTakingUser(  stressPoints/40*100 <= 10, stress == null);
+        $t: TestTakingUser( (stressPoints/40*100 <= 10) , stress != StressCategory.NONE);
     then
     	System.out.println("Nema stresa" ); 
     	modify($t){
@@ -14,9 +15,10 @@ rule "None stress level"
     	} 
 end
 rule "Low stress level"
-	salience 405 
+		agenda-group "stressLevel"
+		salience 400 
     when
-        $t: TestTakingUser( stressPoints/40*100 <= 30 && stressPoints/40*100 > 10, stress == null);
+        $t: TestTakingUser(  (stressPoints/40*100 <= 30 &&  stressPoints/40*100 > 10) , stress != StressCategory.LOW);
     then
     	System.out.println("Niska kolicina stresa" );  
     	modify($t){
@@ -24,9 +26,10 @@ rule "Low stress level"
     	} 
 end
 rule "Medium stress level"
-	salience 405 
+		agenda-group "stressLevel"
+		salience 400 
     when
-        $t: TestTakingUser(  stressPoints/40*100 < 65 && stressPoints/40*100 > 30, stress == null );
+        $t: TestTakingUser(  (stressPoints/40*100 < 65 && stressPoints/40*100 > 30), stress != StressCategory.MEDIUM );
     then
     	System.out.println("Srednja kolicina stresa" );  
     	modify($t){
@@ -34,9 +37,10 @@ rule "Medium stress level"
     	} 
 end
 rule "High stress level"
-	salience 405 
+		agenda-group "stressLevel"
+		salience 400 
     when
-        $t: TestTakingUser( stressPoints/40*100 >= 65, stress == null );
+        $t: TestTakingUser( (stressPoints/40*100 >= 65), stress != StressCategory.HIGH );
     then
     	System.out.println("Visoka kolicina stresa" );  
     	modify($t){

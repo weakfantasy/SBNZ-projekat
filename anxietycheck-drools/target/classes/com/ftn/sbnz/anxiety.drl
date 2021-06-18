@@ -7,7 +7,8 @@ import com.ftn.sbnz.anxietycheck.model.CommonAnxietySymptoms;
 import java.time.LocalDate;
 
 rule "Check if user has anxiety based on stress"
-	salience 400 
+	agenda-group "anxiety"
+	salience 399 
 	when
     	$t: TestTakingUser(stress == StressCategory.HIGH, $symptoms: commonSymptoms, $symptoms.size() > 4,  $startOfSymptoms : start,  $startOfSymptoms.isBefore(LocalDate.now().minusDays(29)), anxiety == false)
     	
@@ -19,7 +20,8 @@ rule "Check if user has anxiety based on stress"
     	System.out.println($t.isAnxiety() + " " + $t.getStress());
 end
 rule "Check if user no longer has anxiety based on stress"
-	salience 98 
+	agenda-group "anxiety"
+	salience 399 
 	when
 		$t : TestTakingUser($startOfSymptoms : start, $startOfSymptoms.isAfter(LocalDate.now().minusDays(29)), anxiety == true);
 	

@@ -10,7 +10,8 @@ import com.ftn.sbnz.anxietycheck.model.DepressionSymptoms;
 import java.time.LocalDate;
 
 rule "Depression" 
-	salience -10*$symptoms.size()
+		agenda-group "depression"
+		salience -10*$symptoms.size()
     when
         $t: TestTakingUser( $symptoms : depressionSymptoms, $symptoms.size() >= 2 , $disorder : anxietyDisorder, $disorder != null , depression == null)
         $d: Depression($name : name)

@@ -9,7 +9,8 @@ import com.ftn.sbnz.anxietycheck.model.PredominantSymptoms;
 import java.time.LocalDate;
 
 rule "Disorder" 
-	salience ((100*$value) / $symptoms.size())
+		agenda-group "disorder"
+		salience ((100*$value) / $symptoms.size())
     when
         $d: AnxietyDisorder($name: name, $symptoms: predominantSymptoms)
         $t: TestTakingUser(anxiety == true, anxietyDisorder == null, $symp: predominantSymptoms)

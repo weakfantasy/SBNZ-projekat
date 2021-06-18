@@ -24,61 +24,55 @@ public class Diagnosis {
 	@Column(unique = false)
 	private String name;
 	
-	@Column(unique = false)
-	private LocalDate datum;
-	
-	@Column(unique = false)
-	@Enumerated(EnumType.STRING)
-	private StressCategory stressLevel;
+	@Column(unique = false, nullable=true)
+	private LocalDate date;
 	
 	@Column(unique = false)
 	private boolean anxiety;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	private Depression depression;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	private Therapy therapy;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	private AnxietyDisorder disorder;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	private TestTakingUser testTakingUser;
 	
 	public Diagnosis() {
 		super();
 	}
 	
-	public Diagnosis(LocalDate datum, AnxietyDisorder disorder, StressCategory stress, boolean anxiety, Therapy therapy, Depression depression) {
+	public Diagnosis(LocalDate datum, AnxietyDisorder disorder, boolean anxiety, Therapy therapy, Depression depression) {
 		super();
-		this.datum = datum;
+		this.date = datum;
 		this.disorder = disorder;
-		this.stressLevel = stress;
 		this.anxiety = anxiety;
 		this.therapy = therapy;
 		this.depression = depression;
 		
 	}
 
-	public Diagnosis(Long id, String name, LocalDate datum, StressCategory stressLevel, boolean anxiety, Therapy therapy,
+	public Diagnosis(Long id, String name, LocalDate datum, boolean anxiety, Therapy therapy,
 			AnxietyDisorder disorder, Depression depression) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.datum = datum;
-		this.stressLevel = stressLevel;
+		this.date = datum;
 		this.anxiety = anxiety;
 		this.therapy = therapy;
 		this.disorder = disorder;
 		this.depression = depression;
 	}
 
-	public LocalDate getDatum() {
-		return datum;
+	public LocalDate getDate() {
+		return date;
 	}
-	public void setDatum(LocalDate datum) {
-		this.datum = datum;
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 	public AnxietyDisorder getDisorder() {
 		return disorder;
@@ -86,12 +80,7 @@ public class Diagnosis {
 	public void setDisorder(AnxietyDisorder disorder) {
 		this.disorder = disorder;
 	}
-	public StressCategory getStress() {
-		return stressLevel;
-	}
-	public void setStress(StressCategory stress) {
-		this.stressLevel = stress;
-	}
+
 	public boolean isAnxiety() {
 		return anxiety;
 	}
@@ -119,14 +108,6 @@ public class Diagnosis {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public StressCategory getStressLevel() {
-		return stressLevel;
-	}
-
-	public void setStressLevel(StressCategory stressLevel) {
-		this.stressLevel = stressLevel;
 	}
 
 	public Depression getDepression() {

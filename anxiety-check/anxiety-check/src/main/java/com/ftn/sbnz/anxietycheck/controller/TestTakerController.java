@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import com.ftn.sbnz.anxietycheck.model.CommonAnxietySymptoms;
 import com.ftn.sbnz.anxietycheck.model.TestTakingUser;
 import com.ftn.sbnz.anxietycheck.service.UserService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TestTakerController {
@@ -30,7 +32,7 @@ public class TestTakerController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 	
-	@RequestMapping(value = "/stressLevel", method = RequestMethod.GET)
+	@RequestMapping(value = "/stressLevel", method = RequestMethod.PUT)
     public ResponseEntity<?> getStressLevel(@RequestBody TestTakerDTO testTakerDto) {
 		System.out.println(testTakerDto.getStart().isBefore(LocalDate.now().minusDays(29)) + " Datum");
 		System.out.println(testTakerDto.getCommonSympotms().size());

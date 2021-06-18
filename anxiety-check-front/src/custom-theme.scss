@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 @import "src/app/styles/colors";
 @import "src/app/styles/variables";
@@ -23,18 +22,20 @@ $angular-material-admin-accent: mat-palette($mat-pink, A200, A100, A400);
 $angular-material-admin-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$angular-material-admin-theme: mat-light-theme($angular-material-admin-primary, $angular-material-admin-accent, $angular-material-admin-warn);
+$angular-material-admin-theme: mat-light-theme(
+  $angular-material-admin-primary,
+  $angular-material-admin-accent,
+  $angular-material-admin-warn
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($angular-material-admin-theme);
 
-
-
 $ama-yellow: (
   50: $yellow,
-  100: #ECECEC,
+  100: #ececec,
   200: $yellow,
   300: $yellow,
   400: $yellow,
@@ -62,12 +63,12 @@ $ama-yellow: (
     A200: $dark-primary-text,
     A400: $light-primary-text,
     A700: $light-primary-text,
-  )
+  ),
 );
 
 $ama-pink: (
   50: $pink,
-  100: #ECECEC,
+  100: #ececec,
   200: $pink,
   300: $pink,
   400: $pink,
@@ -91,12 +92,12 @@ $ama-pink: (
     A200: $dark-primary-text,
     A400: $light-primary-text,
     A700: $light-primary-text,
-  )
+  ),
 );
 
 $ama-blue: (
   50: $blue,
-  100: #ECECEC,
+  100: #ececec,
   200: $blue,
   300: $blue,
   400: $blue,
@@ -124,12 +125,12 @@ $ama-blue: (
     A200: $dark-primary-text,
     A400: $light-primary-text,
     A700: $light-primary-text,
-  )
+  ),
 );
 
 $ama-primary: mat-palette($ama-blue);
-$ama-accent:  mat-palette($ama-yellow);
-$ama-warn:    mat-palette($ama-pink);
+$ama-accent: mat-palette($ama-yellow);
+$ama-warn: mat-palette($ama-pink);
 
 $ama-theme: mat-light-theme($ama-primary, $ama-accent, $ama-warn);
 @include angular-material-theme($ama-theme);
@@ -138,7 +139,10 @@ button.mat-menu-item {
   font-size: 16px;
 }
 
-button.mat-menu-item:hover:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item-highlighted:not([disabled]) {
+button.mat-menu-item:hover:not([disabled]),
+.mat-menu-item.cdk-program-focused:not([disabled]),
+.mat-menu-item.cdk-keyboard-focused:not([disabled]),
+.mat-menu-item-highlighted:not([disabled]) {
   font-size: 16px;
 }
 
@@ -183,40 +187,60 @@ mat-select.mat-select {
   display: none;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-.mat-h1, .mat-headline, .mat-typography h1{
+.mat-h1,
+.mat-headline,
+.mat-typography h1 {
   font-weight: 400;
   font-size: 48px;
 }
 
-.mat-h2, .mat-headline, .mat-typography h2{
+.mat-h2,
+.mat-headline,
+.mat-typography h2 {
   font-weight: 400;
   font-size: 36px;
 }
 
-.mat-h3, .mat-headline, .mat-typography h3{
+.mat-h3,
+.mat-headline,
+.mat-typography h3 {
   font-weight: 400;
   font-size: 26px;
 }
 
-.mat-h4, .mat-headline, .mat-typography h4{
+.mat-h4,
+.mat-headline,
+.mat-typography h4 {
   font-weight: 400;
   font-size: 24px;
 }
 
-.mat-h5, .mat-headline, .mat-typography h5{
+.mat-h5,
+.mat-headline,
+.mat-typography h5 {
   font-weight: 400;
   font-size: 21px;
 }
 
-.mat-h6, .mat-headline, .mat-typography h6{
+.mat-h6,
+.mat-headline,
+.mat-typography h6 {
   font-weight: 400;
   font-size: 18px;
 }
 
-.mat-body p, .mat-body-1 p, .mat-typography p {
+.mat-body p,
+.mat-body-1 p,
+.mat-typography p {
   margin-bottom: 16px;
   line-height: normal;
 }
@@ -261,6 +285,17 @@ mat-toolbar.page-header {
   }
 }
 
+mat-label h6 {
+  color: $toolbar-title-font-color;
+  line-height: 1;
+  letter-spacing: -0.2186px;
+  font-weight: 400;
+  font-size: 20px;
+  @media (max-width: $small) {
+    white-space: normal;
+  }
+}
+
 .mat-toolbar button {
   height: 41.6px;
   width: auto;
@@ -273,7 +308,8 @@ mat-toolbar.page-header {
   }
 }
 
-mat-tab-header .mat-tab-label, .mat-tab-link {
+mat-tab-header .mat-tab-label,
+.mat-tab-link {
   text-transform: uppercase;
   color: $tabs-header-font-color;
   font-weight: $fw-normal;
@@ -360,10 +396,27 @@ div.apexcharts-xaxistooltip-bottom:after {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-::-webkit-scrollbar { width: 6px; height: 3px;}
-::-webkit-scrollbar-button { display: none }
-::-webkit-scrollbar-track {  background-color: $scrollbar-track-color;}
-::-webkit-scrollbar-track-piece { background-color: $scrollbar-track-piece-color;}
-::-webkit-scrollbar-thumb { height: 50px; background-color: $light-grey; border-radius: 36px;}
-::-webkit-scrollbar-corner { background-color: $scrollbar-corner-color;}
-::-webkit-resizer { background-color: $dark-grey;}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 3px;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+::-webkit-scrollbar-track {
+  background-color: $scrollbar-track-color;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: $scrollbar-track-piece-color;
+}
+::-webkit-scrollbar-thumb {
+  height: 50px;
+  background-color: $light-grey;
+  border-radius: 36px;
+}
+::-webkit-scrollbar-corner {
+  background-color: $scrollbar-corner-color;
+}
+::-webkit-resizer {
+  background-color: $dark-grey;
+}

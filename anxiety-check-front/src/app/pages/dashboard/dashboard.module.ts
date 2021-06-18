@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FormsModule } from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { DashboardPageComponent } from './containers';
 import {
@@ -38,7 +39,7 @@ import { DashboardService } from './services';
     RevenueChartComponent,
     DailyLineChartComponent,
     SupportRequestsComponent,
-    ProjectStatChartComponent
+    ProjectStatChartComponent,
   ],
   imports: [
     CommonModule,
@@ -56,7 +57,9 @@ import { DashboardService } from './services';
     MatInputModule,
     NgApexchartsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    MatRadioModule,
+
   ],
   exports: [
     DailyLineChartComponent
