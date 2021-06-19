@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TestResult } from '../model/test-result';
 
 @Injectable({
@@ -17,7 +18,13 @@ testFunction(){
 }
 
 checkAnxiety(testResult : TestResult){
-  return this.http.put("http://localhost:8080/users/stressLevel", testResult);
+  const email = localStorage.getItem('email');
+  return this.http.put(`http://localhost:8080/users/check/${email}`, testResult);
+}
+
+getDiagnoses(): Observable<any[]>{
+  const email = localStorage.getItem('email');
+  return this.http.get<any[]>(`http://localhost:8080/users/diagnoses/${email}`);
 }
 
 }

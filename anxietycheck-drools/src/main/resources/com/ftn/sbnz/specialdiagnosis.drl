@@ -1,0 +1,36 @@
+package com.main
+
+import com.ftn.sbnz.anxietycheck.model.TestTakingUser;
+import com.ftn.sbnz.anxietycheck.model.StressCategory.*;
+import com.ftn.sbnz.anxietycheck.model.AnxietyDisorder;
+import com.ftn.sbnz.anxietycheck.model.Diagnosis;
+import com.ftn.sbnz.anxietycheck.model.DepressionSymptoms;
+import com.ftn.sbnz.anxietycheck.model.RiskFactors;
+
+import java.util.List;
+import java.util.Set;
+
+import java.time.LocalDate;
+
+
+rule "Diagnosis for predisposed patient" 
+		lock-on-active
+		agenda-group "special-diagnosis"
+		salience -62
+    when
+        $t: TestTakingUser($diagnosis : diagnosis, predisposed == true, anxious == false)
+		Number($value: intValue >= 3) from accumulate(
+         	Diagnosis($this: this, $this.getName()=="Occassional stress", $date: date, date.isAfter(LocalDate.now().minusMonths(6))) from $diagnosis,
+         	count($this)
+        )
+        $d: Diagnosis(name == "Constant stress")
+    then
+    	
+    	System.out.println("Special diagnosis: " + $d.getName());
+    	
+    	modify($t){
+    		addDiagnosis($d);
+    	}
+end
+
+/**/

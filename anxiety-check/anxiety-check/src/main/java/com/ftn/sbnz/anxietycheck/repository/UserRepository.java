@@ -7,5 +7,7 @@ import com.ftn.sbnz.anxietycheck.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-
+	
+	User findOneByEmail(String email);
+	
 }

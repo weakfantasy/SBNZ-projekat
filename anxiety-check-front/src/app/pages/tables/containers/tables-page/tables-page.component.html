@@ -3,10 +3,32 @@
     <h1>Tables</h1>
   </mat-toolbar>
 
-  <div class="tables-wrapper">
-    <app-employee-table [employeeTableData]="employeeTableData$ | async"></app-employee-table>
-    <app-material-table [materialTableDate]="materialTableData$ | async"></app-material-table>
-  </div>
+  <mat-table mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="diagnosisName">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Diagnosis</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element">
+        {{element.diagnosisName}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="therapyName">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Therapy</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element">
+        {{element.therapyName}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="therapyDesc">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Therapy Description</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element">
+        {{element.therapyDesc}}
+      </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
 
   <app-footer></app-footer>
 </app-layout>

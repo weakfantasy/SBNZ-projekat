@@ -10,13 +10,23 @@ import com.ftn.sbnz.anxietycheck.model.DepressionSymptoms;
 import java.time.LocalDate;
 
 rule "Depression" 
+		no-loop
 		agenda-group "depression"
 		salience -10*$symptoms.size()
     when
-        $t: TestTakingUser( $symptoms : depressionSymptoms, $symptoms.size() >= 2 , $disorder : anxietyDisorder, $disorder != null , depression == null)
+        $t: TestTakingUser( $symptoms : depressionSymptoms, $symptoms.size() >= 2 , $disorder : anxietyDisorder, $disorder != null)
         $d: Depression($name : name)
         Boolean(booleanValue == true) from  $name.contains($disorder.getName())
     then
     	System.out.println("Depression: " + $name);
     	modify($t) { setDepression($d) }
+end
+
+rule "No depression" 
+		agenda-group "depression"
+		salience -50
+    when
+        $t: TestTakingUser( $disorder : anxietyDisorder, $disorder == null , depression != null)
+    then
+    	modify($t) { setDepression(null) }
 end

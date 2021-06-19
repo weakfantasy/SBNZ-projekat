@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule} from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -14,7 +14,7 @@ import { TablesPageComponent } from './containers';
 import { TablesRoutingModule } from './tables-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { EmployeeTableComponent, MaterialTableComponent } from './components';
-import { TablesService } from './services';
+import { UserService } from 'src/app/services/user.service';
 
 @NgModule({
   declarations: [
@@ -34,10 +34,10 @@ import { TablesService } from './services';
     MatToolbarModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
-    TablesService
+    UserService
   ]
 })
 export class TablesModule { }

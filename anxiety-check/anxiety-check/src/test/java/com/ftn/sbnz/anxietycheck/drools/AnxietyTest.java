@@ -125,7 +125,7 @@ public class AnxietyTest {
       
         System.out.println(user.getPredominantSymptoms().size());
         
-        assertFalse(user.isAnxiety());
+        assertFalse(user.isAnxious());
         
         kieSession.insert(user);
       
@@ -138,7 +138,7 @@ public class AnxietyTest {
         kieSession.fireAllRules();
         
         System.out.println(user.getAnxietyDisorder());
-        assertTrue(user.isAnxiety());
+        assertTrue(user.isAnxious());
        
     }
 

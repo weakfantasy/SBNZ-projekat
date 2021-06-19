@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
-import { TablesService } from '../../services';
-import { Customer, Employee } from '../../models';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-tables-page',
@@ -10,11 +9,20 @@ import { Customer, Employee } from '../../models';
   styleUrls: ['./tables-page.component.scss']
 })
 export class TablesPageComponent {
-  public employeeTableData$: Observable<Employee[]>
-  public materialTableData$: Observable<Customer[]>
 
-  constructor(private service: TablesService) {
-    this.employeeTableData$ = service.loadEmployeeTableData();
-    this.materialTableData$ = service.loadMaterialTableData();
+  result : any[];
+  displayedColumns: string[] = [
+    'diagnosisName',
+    'therapyName',
+    'therapyDesc'
+  ];
+
+  dataSource: MatTableDataSource<any>;
+
+  constructor(private userService: UserService) {
+    this.userService.getDiagnoses().subscribe(res => {
+      console.log(res);
+      this.dataSource = new MatTableDataSource(res);
+    });
   }
 }

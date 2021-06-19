@@ -9,11 +9,12 @@ import com.ftn.sbnz.anxietycheck.model.PredominantSymptoms;
 import java.time.LocalDate;
 
 rule "Disorder" 
+		no-loop
 		agenda-group "disorder"
 		salience ((100*$value) / $symptoms.size())
     when
         $d: AnxietyDisorder($name: name, $symptoms: predominantSymptoms)
-        $t: TestTakingUser(anxiety == true, anxietyDisorder == null, $symp: predominantSymptoms)
+        $t: TestTakingUser(anxious == true, $symp: predominantSymptoms, stress == StressCategory.HIGH)
         Number($value: intValue >= 3) from accumulate(
         	PredominantSymptoms($this:this, this memberOf $symptoms) from $symp,
         	count($this)
@@ -26,4 +27,14 @@ rule "Disorder"
     	System.out.println("Disorder: " + $name);
     	System.out.println("Num of symptoms: " + $value + "/" + $symptoms.size());
     	modify($t) { setAnxietyDisorder($d) }
+end
+
+rule "No more disorder" 
+		agenda-group "disorder"
+		salience 399
+    when
+        $t: TestTakingUser(anxious == false, anxietyDisorder != null)
+   
+    then
+    	modify($t) { setAnxietyDisorder(null) }
 end

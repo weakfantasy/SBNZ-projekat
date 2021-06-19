@@ -9,7 +9,7 @@ import com.ftn.sbnz.anxietycheck.model.DepressionSymptoms;
 
 import java.time.LocalDate;
 
-rule "Diagnosis" 
+rule "Diagnosis for anxiety disorder and depression" 
 		no-loop
 		agenda-group "diagnosis"
 		salience -60
@@ -19,7 +19,35 @@ rule "Diagnosis"
         Boolean(booleanValue == true) from ($disorder == $diagnosedDisorder && $depression == $diagnosedDepression)
     then
     	System.out.println("Diagnosis : " + $d.getTherapy().getName());
-    	$t.setDiagnosis($d);
+
+		$d.setDate(LocalDate.now());
+    	$t.addDiagnosis($d);
+    	update($t);
+    	
+    	
+    	$t.setStartOfTherapy(LocalDate.now());
+    	update($t);
+    	
+end
+
+rule "Diagnosis for stress and anxiety" 
+		no-loop
+		agenda-group "diagnosis"
+		salience -61
+    when
+        $t: TestTakingUser(anxious == false, stress!=StressCategory.NONE, $diagnosis : diagnosis)
+        $d: Diagnosis(anxiety == false)
+        not(
+        	Diagnosis(name == "Constant stress") from $d
+        )
+       
+    then
+    	System.out.println("Diagnosis : " + $d.getName() );
+  		
+  		$d.setDate(LocalDate.now());
+    	$t.addDiagnosis($d);
+    	update($t);
+    	
     	$t.setStartOfTherapy(LocalDate.now());
     	update($t);
     	

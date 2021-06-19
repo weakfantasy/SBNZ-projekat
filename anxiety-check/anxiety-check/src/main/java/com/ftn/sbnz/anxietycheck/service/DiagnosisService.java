@@ -16,5 +16,4 @@ public interface DiagnosisService {
 
 	Diagnosis findOneByName(String name);
 	List<Diagnosis> findAll(); 
-
 }

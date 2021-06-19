@@ -1,4 +1,7 @@
 insert into users (type, email, password, verified) values ('admin', 'admin@gmail.com','$2a$10$RVzuprKddsjdq6P8QWmqF.sCj2uYPIUlbFVB.b7tJ9RdFNOOBNoXO' ,true);
+insert into users (type, email, password, verified) values ('TestTakingUser', 'user@gmail.com','$2a$10$RVzuprKddsjdq6P8QWmqF.sCj2uYPIUlbFVB.b7tJ9RdFNOOBNoXO' ,true);
+
+
 insert into anxiety_disorder (name) values ('GAD');
 insert into anxiety_disorder (name) values ('SAD');
 insert into anxiety_disorder (name) values ('OCD');
@@ -80,6 +83,15 @@ insert into therapy(name, description) values ('Cognitive Behavioral Therapy', '
 
 insert into therapy(name, description) values ('Exposure Therapy', 'Treatment process that is often used to treat simple phobias involves gradual exposure to your fear, so you feel less anxious about it. This is known as desensitisation or exposure therapy. Exposure therapy works by gradually increasing the level of exposure to your fear, which allows you to gain control over your phobia. As the treatment progresses, you should begin to feel less anxious about your phobia.');
 
+insert into therapy(name, description) values ('Stress Relief', 'What is your favorite thing to do when you are stressed?  If your go-to strategy involves a pint of ice cream or a pint of beer, consider adding a few healthy options to the mix!   It’s helpful to create a “diverse portfolio” of stress relief strategies to adapt to your mood and resources.  Below is a sample list.
+Talk to someone: Whether it’s a friend, family, counselor, or religious advisor, getting support is crucial.
+Play: Do something purely for the fun of it.
+Write: Sometimes it’s helpful to get stressful thoughts out of your head and onto paper.
+Change the scenery: Take a walk in the wildlife sanctuary, explore a new place in town, or get out of town altogether.
+Try a relaxation strategy: Mindfulness, yoga, massage…there are many practices to choose from and a growing body of research expounding the benefits.
+Move your body: Find ways to get active and incorporate more movement into your life.');
+
+insert into therapy(name, description) values ('Psychotherapy', 'It is noticed that you are under high stress everytime you are evaluated. As you have predispositions for developing some type of anxiety disorder and or deppression, we suggest you that you seek someone and talk to them');
 
 insert into diagnosis(name, disorder_id, therapy_id, anxiety) values ('Generalized anxiety disorder',1 ,1, true);
 insert into diagnosis(name, disorder_id, therapy_id, anxiety, depression_id) values ('Generalized anxiety disorder that caused depression',1 ,4, true, 1);
@@ -98,4 +110,10 @@ insert into diagnosis(name, disorder_id, therapy_id, anxiety, depression_id) val
 
 insert into diagnosis(name, disorder_id, therapy_id, anxiety) values ('Phobia',6 ,8, true);
 insert into diagnosis(name, disorder_id, therapy_id, anxiety, depression_id) values ('Phobia',6 ,4, true, 2);
+
+insert into diagnosis(name,therapy_id, anxiety) values ('Occassional stress', 9, false);
+insert into diagnosis(name,therapy_id, anxiety) values ('Constant stress', 10, false);
+
+
+
 

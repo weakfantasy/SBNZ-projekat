@@ -1,0 +1,31 @@
+package com.main
+
+import com.ftn.sbnz.anxietycheck.model.TestTakingUser;
+import com.ftn.sbnz.anxietycheck.model.StressCategory.*;
+import com.ftn.sbnz.anxietycheck.model.AnxietyDisorder;
+import com.ftn.sbnz.anxietycheck.model.Diagnosis;
+import com.ftn.sbnz.anxietycheck.model.DepressionSymptoms;
+import com.ftn.sbnz.anxietycheck.model.RiskFactors;
+
+import java.util.List;
+import java.util.Set;
+
+import java.time.LocalDate;
+
+rule "Check if user has predisposition" 
+		agenda-group "risk-factors"
+		salience -50
+    when
+        $t: TestTakingUser( stress == StressCategory.HIGH || stress == StressCategory.MEDIUM,  $riskFactors : riskFactors, riskFactors.size() > 0, anxious == false, predisposed == false )
+    then
+    	modify($t){
+    		setPredisposed(true);
+    	}
+    	System.out.println("Risk : " + $t.isPredisposed());
+    	
+end
+
+
+
+
+

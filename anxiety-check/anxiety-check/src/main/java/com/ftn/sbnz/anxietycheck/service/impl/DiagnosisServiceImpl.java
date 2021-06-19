@@ -26,4 +26,5 @@ public class DiagnosisServiceImpl implements DiagnosisService{
 		return diagnosisRepository.findAll();
 	}
 
+
 }

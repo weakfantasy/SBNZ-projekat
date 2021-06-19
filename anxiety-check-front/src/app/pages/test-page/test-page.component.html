@@ -23,7 +23,7 @@
 
       <mat-label class=" fw-medium">Felt that you were unable to control important things in your life?
       </mat-label>
-      <mat-radio-group formControlName="sympt2" class="example-radio-group">
+      <mat-radio-group class="example-radio-group" formControlName="sympt2" class="example-radio-group">
         <mat-radio-button color="warn" class="example-radio-button" *ngFor="let answer of stressAns"
           [value]="answer.value">
           {{answer.name}}
@@ -127,7 +127,7 @@
 
       <mat-label class=" fw-medium"> Have you experienced rapid and uncontrollable breathing?
       </mat-label>
-      <mat-radio-group formControlName="asympt2" class="example-radio-group">
+      <mat-radio-group class="example-radio-group" formControlName="asympt2" class="example-radio-group">
 
         <mat-radio-button color="warn" class="example-radio-button" value="3">
           Yes
@@ -214,6 +214,128 @@
       <br>
       <button mat-flat-button color="warn" [disabled]="commonAnxietyForm.invalid">Next</button>
     </form>
+  </div>
+
+  <div *ngIf="showDisorder" fxLayout="column" fxFlex="70%" style="width: 50%; margin: 0 auto;"
+    class="typography-content__headings">
+    <form class="example-section" [formGroup]="predominantForm" (ngSubmit)="collectDisorderSympt()">
+      <mat-label>
+        <h6 class="title-center ">Which of these choices resonate with you and your troubles the most? (Read carefully)
+        </h6>
+      </mat-label>
+      <mat-radio-group class="example-radio-group " formControlName="Restlesness">
+        <mat-radio-button color="warn" class="example-radio-button" value="0">Restlesness</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group " formControlName="ConstantWorrying">
+        <mat-radio-button color="warn" class="example-radio-button" value="1">Constant Worrying (and it is often hard to
+          determine
+          outer cause)</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group " formControlName="FeelingsOfDread">
+        <mat-radio-button color="warn" class="example-radio-button" value="2">Feelings Of Dread</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group " formControlName="DifficultyConcentrating">
+        <mat-radio-button color="warn" class="example-radio-button" value="3">Difficulty Concentrating, Mind Wondering
+          Of
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="Irritability">
+        <mat-radio-button color="warn" class="example-radio-button" value="4">Irritability Over everything
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="IntrusiveThoughts">
+        <mat-radio-button color="warn" class="example-radio-button" value="5">Intrusive and Unwanted Thoughts
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="SenseOfDoom">
+        <mat-radio-button color="warn" class="example-radio-button" value="6">Feeling Sense Of Doom</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="FearOfDeath">
+        <mat-radio-button color="warn" class="example-radio-button" value="7">Fear Of Death</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="PanicAttacks">
+        <mat-radio-button color="warn" class="example-radio-button" value="8">Random Panic Attacks</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="FearOfCriticism">
+        <mat-radio-button color="warn" class="example-radio-button" value="9">Fear Of Criticism</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="FearOfAttention">
+        <mat-radio-button color="warn" class="example-radio-button" value="10">Fear Of Attention</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="FearOfEmbarassement">
+        <mat-radio-button color="warn" class="example-radio-button" value="11">Fear Of Embarassement In Public
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="FearOfJudgement">
+        <mat-radio-button color="warn" class="example-radio-button" value="12">Fear Of Judgement From Others
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="UpsettingDreams">
+        <mat-radio-button color="warn" class="example-radio-button" value="13">Having Upsetting Dreams
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="EmotionalDistress">
+        <mat-radio-button color="warn" class="example-radio-button" value="14">Emotional Distress</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="UnwantedMemories">
+        <mat-radio-button color="warn" class="example-radio-button" value="15">Unwanted Memories Entering Your Mind
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="RelivingOfPast">
+        <mat-radio-button color="warn" class="example-radio-button" value="16">Reliving Of Past Events
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="ExcessiveConcernIllnes">
+        <mat-radio-button color="warn" class="example-radio-button" value="17">Excessive Concern Over Having a Terminal
+          Illnes</mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="ExcessiveConcernDeath">
+        <mat-radio-button color="warn" class="example-radio-button" value="18">Excessive Concern Over Death
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="ExcessiveConcernMortality">
+        <mat-radio-button color="warn" class="example-radio-button" value="19">Excessive Concern Over Mortality
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="FearOfContamination">
+        <mat-radio-button color="warn" class="example-radio-button" value="20">Fear Of Contamination By Certain Things
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="FearOfLosingControl">
+        <mat-radio-button color="warn" class="example-radio-button" value="21">Fear Of Losing Control Over Situation
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="FearOfFainting">
+        <mat-radio-button color="warn" class="example-radio-button" value="22">Fear Of Sudden Fainting
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="hopelessness">
+        <mat-radio-button color="warn" class="example-radio-button" value="0">Everything seems hopeless
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="suicidalThougths">
+        <mat-radio-button color="warn" class="example-radio-button" value="1">Suicidal Thoughts
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="unbearablePain">
+        <mat-radio-button color="warn" class="example-radio-button" value="2">Cripling, Unbearable Pain
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-radio-group class="example-radio-group" formControlName="noReasonToLive">
+        <mat-radio-button color="warn" class="example-radio-button" value="3">No Reasons To Go On
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <button type="button" [disabled]="loading" mat-flat-button color="accent" (click)="reset()">Reset Form</button>
+      <button type="submit" [disabled]="loading" mat-flat-button color="warn">Show Results</button>
+    </form>
+  </div>
+
+  <div *ngIf="showResult" fxLayout="column" fxFlex="70%" style="width: 50%; margin: 0 auto;">
+    <h4>YOUR DIAGNOSIS:</h4>
+    <p>Name: {{result.diagnosisName}}</p>
+    <p>Therapy name: {{result.therapyName}}</p>
+    <p>Therapy description: {{result.therapyDesc}}</p>
   </div>
 
   <app-footer></app-footer>

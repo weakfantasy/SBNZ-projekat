@@ -39,9 +39,6 @@ public class Diagnosis {
 	@OneToOne(optional = true, fetch = FetchType.EAGER)
 	private AnxietyDisorder disorder;
 	
-	@OneToOne(optional = true, fetch = FetchType.EAGER)
-	private TestTakingUser testTakingUser;
-	
 	public Diagnosis() {
 		super();
 	}
@@ -118,14 +115,6 @@ public class Diagnosis {
 		this.depression = depression;
 	}
 
-	public TestTakingUser getTestTakingUser() {
-		return testTakingUser;
-	}
-
-	public void setTestTakingUser(TestTakingUser testTakingUser) {
-		this.testTakingUser = testTakingUser;
-	}
-	
 	
 
 }

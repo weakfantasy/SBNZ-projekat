@@ -13,6 +13,7 @@ import com.ftn.sbnz.anxietycheck.model.AnxietyDisorder;
 import com.ftn.sbnz.anxietycheck.model.Depression;
 import com.ftn.sbnz.anxietycheck.model.Diagnosis;
 import com.ftn.sbnz.anxietycheck.model.TestTakingUser;
+import com.ftn.sbnz.anxietycheck.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -23,17 +24,22 @@ public class UserService {
 	private final DisorderService disorderService;
 	private final DepressionService depressionService;
 	private final DiagnosisService diagnosisService;
+	private final TestTakingUserService testTakingUserService;
 	
 	private final KieContainer kieContainer;
 	
 	@Autowired
-	public UserService(KieContainer kieContainer, DisorderService disorderService, DepressionService depressionService,  DiagnosisService diagnosisService) {
+	UserRepository userRepository;
+	
+	@Autowired
+	public UserService(KieContainer kieContainer, DisorderService disorderService, DepressionService depressionService,  DiagnosisService diagnosisService,TestTakingUserService testTakingUserService) {
 		System.out.println("Checking");
 		log.info("Initialising a new example session.");
 		this.disorderService = disorderService;
 		this.depressionService = depressionService;
 		this.kieContainer = kieContainer;
 		this.diagnosisService = diagnosisService;
+		this.testTakingUserService = testTakingUserService;
 	}
 
 	public void getStressLevel(TestTakingUser testTakingUser) {
@@ -64,22 +70,27 @@ public class UserService {
 		kieSession.getAgenda().getAgendaGroup("disorder").setFocus();
 		kieSession.fireAllRules();
 		
+		
 		kieSession.getAgenda().getAgendaGroup("depression").setFocus();
 		kieSession.fireAllRules();
+		
+		kieSession.getAgenda().getAgendaGroup("risk-factors").setFocus();
+		kieSession.fireAllRules();
+		
 		
 		kieSession.getAgenda().getAgendaGroup("diagnosis").setFocus();
 		kieSession.fireAllRules();
 
-		System.out.println("SERVICE AFTER " + testTakingUser.getStress() );
-		System.out.println("SERVICE AFTER " + testTakingUser.isAnxiety() );
-		System.out.println("SERVICE AFTER " + testTakingUser.getAnxietyDisorder().getName());
-		//System.out.println("SERVICE AFTER " + testTakingUser.getDepression().getName() );
-		System.out.println("SERVICE AFTER " + testTakingUser.getDiagnosis().getName() );
-		System.out.println("SERVICE AFTER " + testTakingUser.getDiagnosis().getTherapy().getDescription() );
+		kieSession.getAgenda().getAgendaGroup("special-diagnosis").setFocus();
+		kieSession.fireAllRules();
+
+		System.out.println("DONE");
 	
+		testTakingUserService.save(testTakingUser);
 		System.out.println("try save");
 		
 		kieSession.dispose();
 	}
+	
 
 }
