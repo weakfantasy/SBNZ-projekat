@@ -1,6 +1,6 @@
 <app-layout>
   <mat-toolbar class="page-header" role="heading">
-    <h1>Dashboard</h1>
+    <h1>Test</h1>
 
   </mat-toolbar>
 
@@ -333,9 +333,14 @@
 
   <div *ngIf="showResult" fxLayout="column" fxFlex="70%" style="width: 50%; margin: 0 auto;">
     <h4>YOUR DIAGNOSIS:</h4>
-    <p>Name: {{result.diagnosisName}}</p>
-    <p>Therapy name: {{result.therapyName}}</p>
-    <p>Therapy description: {{result.therapyDesc}}</p>
+    <mat-label>Stress level: </mat-label>
+    <p>{{result.stressLevel}}</p>
+    <mat-label>Name: </mat-label>
+    <p>{{result.diagnosisName}}</p>
+    <mat-label>Therapy name: </mat-label>
+    <p> {{result.therapyName}}</p>
+    <mat-label>Therapy description: </mat-label>
+    <p>{{result.therapyDesc}}</p>
   </div>
 
   <app-footer></app-footer>
